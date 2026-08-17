@@ -9,7 +9,7 @@
   "homepage": "https://github.com/Locaryn/locaryn-cores",
   "repository": "https://github.com/Locaryn/locaryn-cores",
   "keywords": ["core", "hermes", "agent", "memory", "learning-loop", "home-assistant", "skills"],
-  "minLocarynVersion": "0.4.0",
+  "minLocarynVersion": "0.3.8",
   "permissions": {
     "network": {
       "reason": "Pilote l'API server Hermes sur loopback (Runs API HTTP).",

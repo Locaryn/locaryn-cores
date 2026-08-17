@@ -1,0 +1,28 @@
+{
+  "$comment": "Index officiel des extensions Locaryn hébergées dans ce dépôt (décision D13 du document 14 — noyaux alternatifs). Chaque entrée pointe un sous-chemin installable (#cores/…) : la racine du dépôt n'est pas un plugin. Lu par le catalogue « Découvrir » (source Locaryn officielle) de l'application.",
+  "version": 1,
+  "entries": [
+    {
+      "name": "locaryn-core-openclaw",
+      "display_name": "Noyau OpenClaw",
+      "description": "Noyau OpenClaw pour Locaryn : mémoire persistante, skills ClawHub, sub-agents, cron et contrôle Home Assistant — par session, sans remplacer le noyau Locaryn.",
+      "author": "Locaryn",
+      "version": "0.1.0",
+      "homepage": "https://github.com/Locaryn/locaryn-cores/tree/main/cores/openclaw",
+      "install_source": "github:Locaryn/locaryn-cores#cores/openclaw",
+      "keywords": ["core", "noyau", "openclaw", "assistant", "home-assistant", "memory", "skills"],
+      "advertised": ["noyau alternatif", "mémoire persistante", "skills ClawHub", "Home Assistant"]
+    },
+    {
+      "name": "locaryn-core-hermes",
+      "display_name": "Noyau Hermes Agent",
+      "description": "Noyau Hermes Agent (Nous Research) pour Locaryn : boucle d'apprentissage, mémoire à trois niveaux, skills, sub-agents et Home Assistant — par session, sans remplacer le noyau Locaryn.",
+      "author": "Locaryn",
+      "version": "0.1.0",
+      "homepage": "https://github.com/Locaryn/locaryn-cores/tree/main/cores/hermes",
+      "install_source": "github:Locaryn/locaryn-cores#cores/hermes",
+      "keywords": ["core", "noyau", "hermes", "agent", "memory", "learning-loop", "home-assistant", "skills"],
+      "advertised": ["noyau alternatif", "boucle d'apprentissage", "mémoire persistante", "Home Assistant"]
+    }
+  ]
+}

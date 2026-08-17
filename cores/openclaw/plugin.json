@@ -9,7 +9,7 @@
   "homepage": "https://github.com/Locaryn/locaryn-cores",
   "repository": "https://github.com/Locaryn/locaryn-cores",
   "keywords": ["core", "openclaw", "assistant", "home-assistant", "memory", "skills"],
-  "minLocarynVersion": "0.4.0",
+  "minLocarynVersion": "0.3.8",
   "permissions": {
     "network": {
       "reason": "Pilote le gateway OpenClaw sur loopback (OpenResponses HTTP).",

@@ -14,9 +14,11 @@ de code avec le noyau natif Locaryn à côté, inchangées.
 
 | Chemin | Contenu |
 | --- | --- |
+| `catalog.json` | Index officiel lu par Découvrir : les deux noyaux, chacun pointant son sous-chemin installable (`#cores/…`) |
 | `cores/openclaw/` | Extension de noyau **OpenClaw** (`plugin.json` + docs) |
 | `cores/hermes/` | Extension de noyau **Hermes Agent** (`plugin.json` + docs) |
 | `skills/` | Index de skills par écosystème (départ, interrogés à la volée) |
+| `tests/fake-core/` | Serveur fake-core autonome (surface `responses`/`runs`) pour la CI du pont sans réseau |
 | `docs/integration.md` | Comment l'intégration fonctionne (architecture) |
 | `docs/drivers.md` | Contrat du pont hôte ↔ noyau (dialectes, événements, sécurité) |
 
@@ -25,8 +27,9 @@ de code avec le noyau natif Locaryn à côté, inchangées.
 ### Depuis l'application (recommandé)
 
 1. Ouvrez **Réglages → Extensions**.
-2. Onglet **Découvrir**, ou « + Depuis un dépôt GitHub » avec
-   `github:Locaryn/locaryn-cores`.
+2. Onglet **Découvrir** — les deux noyaux y figurent (source Locaryn
+   officielle), ou « + Depuis un dépôt GitHub » avec
+   `github:Locaryn/locaryn-cores#cores/openclaw` (idem pour Hermes).
 3. Choisissez le noyau à installer (**OpenClaw** ou **Hermes**), accordez les
    permissions, **Activez**.
 4. Locaryn télécharge le noyau, génère un jeton d'accès, le démarre et attend
@@ -38,15 +41,16 @@ de code avec le noyau natif Locaryn à côté, inchangées.
 ### Depuis le terminal
 
 ```bash
-locaryn plugin install github:Locaryn/locaryn-cores --pick locaryn-core-openclaw
+locaryn plugin install github:Locaryn/locaryn-cores#cores/openclaw
+locaryn cores list
 locaryn sessions new --core openclaw
 ```
 
 ## Prérequis
 
-- **Locaryn** avec le support des noyaux (Phase A — section `core` du
-  manifeste, `packages/core-bridge`). Tant que le support hôte n'est pas
-  publié, les manifestes s'installent mais le pilotage est inactif.
+- **Locaryn 0.3.8+** : le support des noyaux (Phase A — section `core` du
+  manifeste, `packages/core-bridge`, supervision par le daemon) est publié à
+  partir de cette version.
 - **OpenClaw** : Node.js 20+ (installation npm `openclaw`, ou déjà installé —
   mode `existing`).
 - **Hermes Agent** : Python 3.10+ (`pip install hermes-agent`, ou déjà
@@ -54,6 +58,18 @@ locaryn sessions new --core openclaw
 
 Les deux noyaux tournent **en local uniquement** (loopback) et sont joints par
 un jeton généré par Locaryn. Aucune donnée ne sort de la machine.
+
+## Tester le pont sans réseau
+
+`tests/fake-core/fake_core.py` parle les dialectes `responses` et `runs` de
+façon déterministe (miroir Python du fake core embarqué dans les tests du
+pont). Le pont vise un serveur externe via `LOCARYN_FAKE_CORE_URL` :
+
+```bash
+python3 tests/fake-core/fake_core.py &   # imprime l'URL, ex. http://127.0.0.1:59006
+LOCARYN_FAKE_CORE_URL=http://127.0.0.1:59006 cargo test -p locaryn-core-bridge
+python3 tests/fake-core/fake_core.py --selftest   # ou l'autotest seul, sans le pont
+```
 
 ## Écosystèmes couverts
 
