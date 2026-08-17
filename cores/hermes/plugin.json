@@ -1,0 +1,99 @@
+{
+  "schema": "https://locaryn.dev/schema/plugin.json/v0.1",
+  "apiVersion": "0.1",
+  "name": "locaryn-core-hermes",
+  "version": "0.1.0",
+  "description": "Noyau Hermes Agent (Nous Research) pour Locaryn : boucle d'apprentissage, mémoire à trois niveaux, skills, sub-agents et Home Assistant — par session, sans remplacer le noyau Locaryn.",
+  "author": "Locaryn",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Locaryn/locaryn-cores",
+  "repository": "https://github.com/Locaryn/locaryn-cores",
+  "keywords": ["core", "hermes", "agent", "memory", "learning-loop", "home-assistant", "skills"],
+  "minLocarynVersion": "0.4.0",
+  "permissions": {
+    "network": {
+      "reason": "Pilote l'API server Hermes sur loopback (Runs API HTTP).",
+      "scope": "always"
+    },
+    "shell": {
+      "reason": "Lance, supervise et arrête le gateway Hermes.",
+      "scope": "always"
+    },
+    "env": ["API_SERVER_KEY"]
+  },
+  "components": {},
+  "capabilities": [
+    "core",
+    "assistant",
+    "memory",
+    "learning-loop",
+    "home-assistant",
+    "cron",
+    "subagents",
+    "mcp",
+    "skills"
+  ],
+  "ui_contributions": {
+    "settings_sections": [
+      {
+        "id": "noyau-hermes",
+        "label": "Noyau Hermes Agent",
+        "description": "Pilotage du gateway Hermes par Locaryn.",
+        "fields": [
+          { "id": "auto_start", "type": "boolean", "label": "Démarrer avec Locaryn", "default": "true" },
+          { "id": "profile", "type": "string", "label": "Profil Hermes (défaut)", "default": "default" },
+          { "id": "model", "type": "model", "label": "Modèle par défaut" }
+        ]
+      }
+    ]
+  },
+  "core": {
+    "driver": "runs",
+    "api_url": "http://127.0.0.1:8642",
+    "port": 8642,
+    "install": {
+      "kind": "pip",
+      "package": "hermes-agent",
+      "fallback": "existing",
+      "hint": "Le gateway Hermes doit être joignable ; si hermes-agent est déjà installé, choisissez le mode existing."
+    },
+    "lifecycle": {
+      "start": ["hermes", "gateway"],
+      "env": {
+        "API_SERVER_ENABLED": "true",
+        "API_SERVER_HOST": "127.0.0.1",
+        "API_SERVER_PORT": "{{port}}",
+        "API_SERVER_KEY": "{{token}}"
+      },
+      "health": { "method": "GET", "url": "http://127.0.0.1:8642/health", "retries": 60, "interval_ms": 1000 }
+    },
+    "auth": {
+      "scheme": "bearer",
+      "secret_source": "env",
+      "env_key": "API_SERVER_KEY"
+    },
+    "session": {
+      "routing": "conversation",
+      "max_sessions": 20
+    },
+    "skills": {
+      "registry": "hermes",
+      "query": "hermes skills",
+      "install": "hermes skills install",
+      "install_dir": "~/.hermes/skills",
+      "native": true
+    },
+    "tools": {
+      "client_tools": false,
+      "approval": "locaryn",
+      "progress_events": ["hermes.tool.progress", "subagent.start", "subagent.complete"]
+    },
+    "capabilities_probe": { "method": "GET", "url": "http://127.0.0.1:8642/v1/capabilities" }
+  },
+  "config": {
+    "schema": {
+      "auto_start": { "type": "boolean", "default": true },
+      "profile": { "type": "string", "default": "default" }
+    }
+  }
+}

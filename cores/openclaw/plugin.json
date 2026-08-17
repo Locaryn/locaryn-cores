@@ -1,0 +1,96 @@
+{
+  "schema": "https://locaryn.dev/schema/plugin.json/v0.1",
+  "apiVersion": "0.1",
+  "name": "locaryn-core-openclaw",
+  "version": "0.1.0",
+  "description": "Noyau OpenClaw pour Locaryn : mémoire persistante, skills ClawHub, sub-agents, cron et contrôle Home Assistant — par session, sans remplacer le noyau Locaryn.",
+  "author": "Locaryn",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Locaryn/locaryn-cores",
+  "repository": "https://github.com/Locaryn/locaryn-cores",
+  "keywords": ["core", "openclaw", "assistant", "home-assistant", "memory", "skills"],
+  "minLocarynVersion": "0.4.0",
+  "permissions": {
+    "network": {
+      "reason": "Pilote le gateway OpenClaw sur loopback (OpenResponses HTTP).",
+      "scope": "always"
+    },
+    "shell": {
+      "reason": "Lance, supervise et arrête le processus openclaw.",
+      "scope": "always"
+    },
+    "env": ["OPENCLAW_GATEWAY_PASSWORD"]
+  },
+  "components": {},
+  "capabilities": [
+    "core",
+    "assistant",
+    "memory",
+    "home-assistant",
+    "cron",
+    "subagents",
+    "skills"
+  ],
+  "ui_contributions": {
+    "settings_sections": [
+      {
+        "id": "noyau-openclaw",
+        "label": "Noyau OpenClaw",
+        "description": "Pilotage du gateway OpenClaw par Locaryn.",
+        "fields": [
+          { "id": "auto_start", "type": "boolean", "label": "Démarrer avec Locaryn", "default": "true" },
+          { "id": "agent", "type": "string", "label": "Agent OpenClaw (défaut main)", "default": "main" },
+          { "id": "thinking", "type": "select", "label": "Niveau de pensée", "options": ["off", "low", "high"], "default": "low" }
+        ]
+      }
+    ]
+  },
+  "core": {
+    "driver": "responses",
+    "api_url": "http://127.0.0.1:18789/v1/responses",
+    "models_url": "http://127.0.0.1:18789/v1/models",
+    "port": 18789,
+    "install": {
+      "kind": "npm",
+      "package": "openclaw",
+      "fallback": "existing",
+      "hint": "openclaw gateway doit être joignable ; si openclaw est déjà installé, choisissez le mode existing."
+    },
+    "lifecycle": {
+      "start": ["openclaw", "gateway", "--port", "{{port}}"],
+      "env": {
+        "OPENCLAW_GATEWAY_PASSWORD": "{{token}}"
+      },
+      "health": { "method": "GET", "url": "{{models_url}}", "retries": 30, "interval_ms": 1000 }
+    },
+    "auth": {
+      "scheme": "bearer",
+      "secret_source": "env",
+      "env_key": "OPENCLAW_GATEWAY_PASSWORD"
+    },
+    "session": {
+      "routing": "user",
+      "max_sessions": 20,
+      "stateless_by_default": true
+    },
+    "skills": {
+      "registry": "clawhub",
+      "query": "openclaw skills search",
+      "install": "openclaw skills install",
+      "install_dir": "~/.openclaw/skills",
+      "native": true
+    },
+    "tools": {
+      "client_tools": true,
+      "approval": "locaryn"
+    },
+    "capabilities_probe": { "method": "GET", "url": "{{models_url}}" }
+  },
+  "config": {
+    "schema": {
+      "auto_start": { "type": "boolean", "default": true },
+      "agent": { "type": "string", "default": "main" },
+      "thinking": { "type": "string", "default": "low" }
+    }
+  }
+}

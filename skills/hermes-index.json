@@ -1,0 +1,33 @@
+{
+  "$comment": "Index de départ, volontairement court et vérifié à la main. Hermes fournit des skills embarqués (toujours disponibles) et des skills optionnels officiels ; la boucle d'apprentissage en crée aussi. L'onglet Skills de l'application interroge la source en direct (hermes skills) et complète cet index à la volée.",
+  "ecosystem": "hermes",
+  "source": "hermes-hub",
+  "query": "hermes skills",
+  "install": "hermes skills install <slug>",
+  "skills": [
+    {
+      "slug": "bundled",
+      "name": "Skills embarqués",
+      "description": "Skills toujours disponibles avec hermes-agent (découverts via hermes skills).",
+      "verified": true
+    },
+    {
+      "slug": "optional-skills",
+      "name": "Skills optionnels officiels",
+      "description": "Catalogue officiel installable explicitement (dossier optional-skills du dépôt).",
+      "verified": true
+    },
+    {
+      "slug": "home-assistant",
+      "name": "Home Assistant",
+      "description": "Plugin de plateforme homeassistant : pilotage de la maison depuis Hermes.",
+      "verified": true
+    },
+    {
+      "slug": "learning-loop",
+      "name": "Skills appris",
+      "description": "Skills créés et améliorés par la boucle d'apprentissage pendant l'usage.",
+      "verified": true
+    }
+  ]
+}
