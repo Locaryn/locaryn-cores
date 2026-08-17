@@ -78,8 +78,9 @@
     },
     "skills": {
       "registry": "hermes",
+      "index": "skills-index.json",
       "query": "hermes skills",
-      "install": "hermes skills install",
+      "install": "hermes skills install {{slug}}",
       "install_dir": "~/.hermes/skills",
       "native": true
     },

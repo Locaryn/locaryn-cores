@@ -75,8 +75,9 @@
     },
     "skills": {
       "registry": "clawhub",
+      "index": "skills-index.json",
       "query": "openclaw skills search",
-      "install": "openclaw skills install",
+      "install": "openclaw skills install {{slug}}",
       "install_dir": "~/.openclaw/skills",
       "native": true
     },

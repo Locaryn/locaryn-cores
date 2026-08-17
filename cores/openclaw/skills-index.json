@@ -1,0 +1,45 @@
+{
+  "$comment": "Index de départ, volontairement court et vérifié à la main. Le registre ClawHub compte des milliers de skills : l'onglet Skills de l'application interroge la source en direct (openclaw skills search <terme>) et complète cet index à la volée. Chaque entrée : slug (référence ClawHub), nom, description courte, vérifié.",
+  "ecosystem": "openclaw",
+  "source": "clawhub",
+  "query": "openclaw skills search <terme>",
+  "install": "openclaw skills install @owner/<slug>",
+  "skills": [
+    {
+      "slug": "home-assistant",
+      "name": "Home Assistant",
+      "description": "Contrôle de Home Assistant : états, scènes, automatisations, appareils.",
+      "verified": true
+    },
+    {
+      "slug": "calendar",
+      "name": "Calendrier",
+      "description": "Lecture et gestion d'agendas (Google Calendar et autres).",
+      "verified": false
+    },
+    {
+      "slug": "email",
+      "name": "Courriel",
+      "description": "Résumés, rédaction et envoi de courriels (Gmail et autres).",
+      "verified": false
+    },
+    {
+      "slug": "browser-automation",
+      "name": "Automatisation navigateur",
+      "description": "Remplir des formulaires, collecter des pages, tâches web répétitives.",
+      "verified": false
+    },
+    {
+      "slug": "web-search",
+      "name": "Recherche web",
+      "description": "Recherche sur le web et extraction de contenu.",
+      "verified": false
+    },
+    {
+      "slug": "reminders",
+      "name": "Rappels",
+      "description": "Rappels et listes de tâches pilotés par cron.",
+      "verified": false
+    }
+  ]
+}
