@@ -47,8 +47,7 @@
   },
   "core": {
     "driver": "responses",
-    "api_url": "http://127.0.0.1:18789/v1/responses",
-    "models_url": "http://127.0.0.1:18789/v1/models",
+    "api_url": "http://127.0.0.1:18789",
     "port": 18789,
     "install": {
       "kind": "npm",
@@ -61,7 +60,7 @@
       "env": {
         "OPENCLAW_GATEWAY_PASSWORD": "{{token}}"
       },
-      "health": { "method": "GET", "url": "{{models_url}}", "retries": 30, "interval_ms": 1000 }
+      "health": { "method": "GET", "url": "http://127.0.0.1:18789/v1/models", "retries": 30, "interval_ms": 1000 }
     },
     "auth": {
       "scheme": "bearer",
@@ -85,7 +84,7 @@
       "client_tools": true,
       "approval": "locaryn"
     },
-    "capabilities_probe": { "method": "GET", "url": "{{models_url}}" }
+    "capabilities_probe": { "method": "GET", "url": "http://127.0.0.1:18789/v1/models" }
   },
   "config": {
     "schema": {
