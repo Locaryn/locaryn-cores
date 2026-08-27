@@ -82,7 +82,7 @@ sont traduits en événements Locaryn existants.
 
 ## État du support hôte
 
-Le support hôte (section `core` du `plugin.json`, `packages/core-bridge`,
+Le support hôte (section `core` du `morph.json`, `packages/core-bridge`,
 migration `core_id`, UI) est la **Phase A** du dépôt principal. Les manifestes
 de ce dépôt sont prêts et rétro-compatibles : installables dès aujourd'hui,
 pilotés dès la Phase A publiée.

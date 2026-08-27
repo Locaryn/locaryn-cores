@@ -8,7 +8,7 @@ hôte n'est pas publié).
 
 ## 1. Manifeste — section `core`
 
-La section `core` du `plugin.json` décrit tout ce dont le pont a besoin.
+La section `core` du `morph.json` décrit tout ce dont le pont a besoin.
 Champs requis :
 
 | Champ | Rôle |
@@ -93,7 +93,7 @@ Locaryn peut fermer la session noyau si le dialecte le permet.
 1. `api_url` doit être sur **loopback** (127.0.0.1/8, ::1) — sinon refus
    d'installation.
 2. Le jeton est généré par Locaryn (CSPRNG), jamais stocké dans le
-   `plugin.json`, injecté via env ou fichier avec permissions 0600.
+   `morph.json`, injecté via env ou fichier avec permissions 0600.
 3. Le processus noyau tourne avec les droits de l'utilisateur, jamais en
    élévation.
 4. Les skills installés sont traités comme **données non fiables** (règle

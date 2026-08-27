@@ -15,8 +15,8 @@ de code avec le noyau natif Locaryn à côté, inchangées.
 | Chemin | Contenu |
 | --- | --- |
 | `catalog.json` | Index officiel lu par Découvrir : les deux noyaux, chacun pointant son sous-chemin installable (`#cores/…`) |
-| `cores/openclaw/` | Extension de noyau **OpenClaw** (`plugin.json` + docs) |
-| `cores/hermes/` | Extension de noyau **Hermes Agent** (`plugin.json` + docs) |
+| `cores/openclaw/` | Extension de noyau **OpenClaw** (`morph.json` + docs) |
+| `cores/hermes/` | Extension de noyau **Hermes Agent** (`morph.json` + docs) |
 | `skills/` | Index de skills par écosystème (départ, interrogés à la volée) |
 | `tests/fake-core/` | Serveur fake-core autonome (surface `responses`/`runs`) pour la CI du pont sans réseau |
 | `docs/integration.md` | Comment l'intégration fonctionne (architecture) |
