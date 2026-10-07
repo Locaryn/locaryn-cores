@@ -15,8 +15,8 @@ de code avec le noyau natif Locaryn à côté, inchangées.
 | Chemin | Contenu |
 | --- | --- |
 | `catalog.json` | Index officiel lu par Découvrir : les deux noyaux, chacun pointant son sous-chemin installable (`#cores/…`) |
-| `cores/openclaw/` | Extension de noyau **OpenClaw** (`morph.json` + docs) |
-| `cores/hermes/` | Extension de noyau **Hermes Agent** (`morph.json` + docs) |
+| `cores/openclaw/` | Morph de noyau **OpenClaw** (`morph.json` + docs) |
+| `cores/hermes/` | Morph de noyau **Hermes Agent** (`morph.json` + docs) |
 | `skills/` | Index de skills par écosystème (départ, interrogés à la volée) |
 | `tests/fake-core/` | Serveur fake-core autonome (surface `responses`/`runs`) pour la CI du pont sans réseau |
 | `docs/integration.md` | Comment l'intégration fonctionne (architecture) |
@@ -26,7 +26,7 @@ de code avec le noyau natif Locaryn à côté, inchangées.
 
 ### Depuis l'application (recommandé)
 
-1. Ouvrez **Réglages → Extensions**.
+1. Ouvrez **Réglages → Morphs**.
 2. Onglet **Découvrir** — les deux noyaux y figurent (source Locaryn
    officielle), ou « + Depuis un dépôt GitHub » avec
    `github:Locaryn/locaryn-cores#cores/openclaw` (idem pour Hermes).
