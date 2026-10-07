@@ -1,6 +1,6 @@
 # Noyau Hermes Agent pour Locaryn
 
-Extension de noyau : pilote le **gateway Hermes Agent** (Nous Research) depuis
+Morph de noyau : pilote le **gateway Hermes Agent** (Nous Research) depuis
 Locaryn via sa **Runs API** (`/v1/runs` + événements SSE, `stop`, `approval`).
 
 ## Ce que ça apporte

@@ -1,7 +1,7 @@
 # Contrat du pont hôte ↔ noyau
 
 Ce document est le **contrat** entre le support hôte de Locaryn
-(`packages/core-bridge`, dépôt principal) et les extensions de ce dépôt. Il
+(`packages/core-bridge`, dépôt principal) et les morphs de ce dépôt. Il
 fixe les dialectes, la négociation, les événements et les règles de sécurité.
 Version du contrat : **0.1** (pré-Phase A — peut bouger tant que le support
 hôte n'est pas publié).
@@ -25,7 +25,7 @@ Champs requis :
 | `skills` | `registry`, `query`/`install` (commandes), `install_dir`, `native` |
 | `tools` | `client_tools` (bool), `approval` (`locaryn` \| `core`) |
 
-Le pont **ignore les champs inconnus** : une extension peut ajouter des
+Le pont **ignore les champs inconnus** : un morph peut ajouter des
 métadonnées sans casser la validation.
 
 ## 2. Dialectes
@@ -103,6 +103,6 @@ Locaryn peut fermer la session noyau si le dialecte le permet.
 
 ## 7. Versionnage
 
-- `core.contract` (optionnel) : version du contrat attendue par l'extension.
-  Absent = 0.1. Le pont refuse une extension dont le contrat est plus récent
+- `core.contract` (optionnel) : version du contrat attendue par le morph.
+  Absent = 0.1. Le pont refuse un morph dont le contrat est plus récent
   que le sien, avec un message clair (« mise à jour de Locaryn requise »).

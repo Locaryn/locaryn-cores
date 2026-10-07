@@ -1,7 +1,7 @@
 # Intégration des noyaux alternatifs — architecture publique
 
 Locaryn est un hôte. Un **noyau alternatif** (OpenClaw, Hermes Agent…) est une
-extension qui apporte un autre *cerveau* : sa boucle, sa mémoire, ses skills,
+morph qui apporte un autre *cerveau* : sa boucle, sa mémoire, ses skills,
 ses intégrations. Le noyau Locaryn n'est jamais remplacé : chaque session
 choisit le sien, et les conversations ordinaires continuent inchangées.
 
@@ -36,11 +36,11 @@ Le pont (`packages/core-bridge` dans le dépôt principal Locaryn) comprend :
 ## Cycle de vie d'une session
 
 ```
-Réglages → Extensions → installer le noyau → Activer
+Réglages → Morphs → installer le noyau → Activer
   └─ Locaryn télécharge le noyau, génère un jeton (CSPRNG),
      lance le processus (loopback), attend le healthcheck.
 Nouvelle session → Noyau : OpenClaw
-  └─ session.core_id = <extension>
+  └─ session.core_id = <morph>
 Message → ExternalCoreAgent → CoreDriver.send(session, input, tools)
   └─ stream SSE → StreamEvent (tokens, ToolCall, ToolResult) → UI Locaryn
 ```

@@ -1,6 +1,6 @@
 # Noyau OpenClaw pour Locaryn
 
-Extension de noyau : pilote le **gateway OpenClaw** depuis Locaryn via son API
+Morph de noyau : pilote le **gateway OpenClaw** depuis Locaryn via son API
 **OpenResponses** (`POST /v1/responses`, streaming SSE, continuité de session).
 
 ## Ce que ça apporte
